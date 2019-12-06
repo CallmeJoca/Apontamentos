@@ -20,10 +20,10 @@
     - [Intentos Explícitos](#intentos-expl%c3%adcitos)
     - [Intentos Implícitos](#intentos-impl%c3%adcitos)
     - [Envio de Dados Via Intento](#envio-de-dados-via-intento)
-    - [Começar Atividades para Obter Retorno](#come%c3%a7ar-atividades-para-obter-retorno)
   - [*Toasts*](#toasts)
   - [Segurança no Android](#seguran%c3%a7a-no-android)
     - [Permissões](#permiss%c3%b5es)
+  - [Armazenamento de Dados Persistentes](#armazenamento-de-dados-persistentes)
   - [SQLite Databases](#sqlite-databases)
     - [Modelo Conceptual](#modelo-conceptual)
       - [Entididade Relacionameto](#entididade-relacionameto)
@@ -440,7 +440,37 @@ Existem **várias formas de enviar dados** através de um intento:
 + Através da **indicação de um URI**;
 + Através de uma **lista de pares de valores** designada por `Extras`.
 
-### Começar Atividades para Obter Retorno
+O exemplo seguinte mostra como se pode declarar um intento definindo a ação `ACTION_VIEW` e um URI, ambos passados diretamente ao construtor.
+O intento pede ao OS que lhe abra qualquer aplicação que permita `VER`, de alguma forma, os dados que lhe está a passar.
+
+```java
+    import android.content.Intent;
+    ...
+    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0, 0?q=40.2857325, -7.5012379 (Covilha)"));
+    startActivity(intent);
+```
+
+O exemplo seguinte ilustra o envio de dados via pares de valores. Depois de se instanciar o intento, basta fazer uso do método `putExtra(string, .)` para definir um novo par.
+**A primeira *string* constitui ua chave que pode ser usada para devolver o valor colocado no segundo parâmetro** do método no destino.
+
+```java
+    import android.content.Intent;
+    ...
+    Intent iActivity = new Intent(this, Activity2.class);
+    iActivity.putExtra("string1", "This string is going to Activity2.");
+    startActivity(iActivity);
+```
+
+Para reaver os valores enviados como extras, **obtém-se primeiro o intento** no componente destino através de `getIntent()`, e **depois o valor do par** através de um método `getTypeExtra("ID")` adequado.
+O trecho de código seguinte, definido na `Activity2` termina o exemplo anterior.
+```java
+    import android.content.Intent;
+    ...
+    Intent iCameFromActivity1 = getIntent();
+    String s = iCameFromActivity1.getStringExtra("string1");
+```
+
+De forma mais simplistica:
 
 Na atividade 1
 
@@ -551,6 +581,18 @@ Estamos a fazer uma aplicação. Estamos com vontade de dar acesso a umas das at
         </manifest>
 ```
 Estamos a fazer uma aplicação, mas queremos usar os recursos de outra. Há que pedir...
+
+## Armazenamento de Dados Persistentes
+
+Umas das funcionalidades mais úteis para a maior parte das aplicações móveis é a de **gerir e armazenar dados de forma persistente**.
+O SO *Android* disponibiliza diversas formas de o fazer, nomeadamente:
+1. Um **recurso/classe** chamado `SharedPreferences`, **para se guardarem dados primitivos em pares chave-valor**;
+2. **Armazenamento interno**, para se guardarem dados na **memória persistente do dispositivo**;
+3. **Armazenamento Externo**, para se guardarem **dados públicos na memória persistente partilhada e externa**;
+4. Bases de dados ***SQLite***, para **armazenamento e acesso eficiente de dados estruturados** em bases de dados **privadas**;
+5. Formas de **acesso à rede**, para **armazenament e gestão de dados remotos**.
+
+
 
 ## SQLite Databases
 
