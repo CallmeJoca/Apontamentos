@@ -186,7 +186,7 @@ Para **todas** as mensagens e chaves.
 A cifra é continua porque à medida que vai crescendo o ficheiro este é cifrado de foram contínua.  
 
 Rivest Cipher 4 (RC4)
-
+```
            128 bits
               |
               V
@@ -195,6 +195,7 @@ Rivest Cipher 4 (RC4)
               V
       bits pseudo aleatórios
 
+```
 ## Cifra de Chave Simétrica **por Blocos**
 
 ### História
@@ -213,14 +214,17 @@ Em 1997 um grupo de investigadores numa universidade juntaram várias *PlayStati
 
 A solução temporária foi de cifrar, decifrar e cifrar com 3 chaves diferentes.
 
+```
     E-DES(k3,D-DES(k2,E-DES(k1,M)))
 
+```
 Esta cifra, a 3DES, era de 168bits a custa de 3 vezes a *performance*
 
 Mais tarde foi desenvolvido o novo *Encryption Standard* através de uma competição aberta que resultou na cifra *Advanced Encryption Standard* (AES).
 
 ### Aspetos Gerais
 
+```
               Chave                            Chave
                 +                                +
              Bloco de                         Bloco de
@@ -235,6 +239,7 @@ Mais tarde foi desenvolvido o novo *Encryption Standard* através de uma competi
              Bloco de                         Bloco de 
             criptograma                      texto-limpo
 
+```
 As funções usadas nestas cifras ( *Pseudo Random Permutations* ) são funções que implementam os dois conceitos de Shannon para cifras de qualidade.
 
 Como estas cifras operam por blocos, é preciso (infelizmente) saber como funcionam os modos.  
@@ -252,6 +257,7 @@ O Electronic Code Book(ECB) é o modo mais simples de usar uma cifra de chave Si
 
 Apesar de ser o modo mais simples de usar uma cifra de chave simétrica por blocos não se deve usar ECB.
 
+```
     texto-limpo
       |----------|-----------|----------|-----|55555|
             |          |          |          |
@@ -261,6 +267,7 @@ Apesar de ser o modo mais simples de usar uma cifra de chave simétrica por bloc
             V          V          V          V
       |cccccccccc|cccccccccc|cccccccccc|cccccccccc|
 
+```
 O *padding* mais utilizado é ***PKCS1.5(Public Key Criptography Standard) padding***. Este é composto por valores iguais ao tamanho que falta para completar um bloco. Caso o último bloco venha cheio adiciona-se um bloco só de *padding*.
 
 O problema do ECB é que se existirem dois (ou mais) blocos de texto-limpo então o criptograma também conterá também blocos iguais.
@@ -287,11 +294,13 @@ O CTR transforma a Cifra de Chave Simétrica por Blocos numa Cifra de Chave Sim�
 
 ### Integridade
 
+```
                    +--------+
     input--------> | função | --------> output
     de qualquer    +--------+           com tamanho fixo
     tamanho
 
+```
 #### Propriadades de Funções de *Hash* sem serem Criptográficas
 
 + São fáceis de computar no sentido direto (podem ter inverção);
@@ -326,6 +335,7 @@ Se tivermos um ficheiro e o valor de *hash*, não conseguimos encontrar, em temp
 
 #### Utilidades das Funções de *Hash*
 
+```
     Alice               Micro-ondas                Bob
       | ola! -----------~~~~~~~~~~~----------> ole! |
 
@@ -335,7 +345,8 @@ Se tivermos um ficheiro e o valor de *hash*, não conseguimos encontrar, em temp
                                         SHA256(oli!) = h2
                                         Se h1 != h2
                                            descarta a mensagem
-    
+   
+``` 
 As funções de *hash* podem **então** ser usadas para proteger a integridade de mensagens em casos de erros **aleatórios**.
 
 ### Códigos de Autenticação de Mensagens
@@ -354,12 +365,16 @@ Muitas.
 
 A mais popular é a **HMAC** - *Hash based Message Authentication Code*
 
+```
     HMAC-SHA256(k,m) = SHA256(k || SHA256(k || m)) 
 
+```
 A fórmula anterior produz um código de tamanho 256bits
 
+```
     HMAC-SHA1(k,m) = SHA1(k xOR mascara_externa || SHA1(k xOR mascara_interna || m))
 
+```
 A fórmula anterior produz um código de tamanho 160bits
 
 ECBC-MAC: *Encrypted Cipher Block Chaining* MAC
@@ -420,6 +435,7 @@ Isto tem de ser verdade: D(sk, E(pk, m)) = m
 
 Forma engenhosa de construir funções de *hash*
 
+```
        m1      m2      ...                     mn
     |-------|-------|-------|-------|-------|-------|
 
@@ -432,6 +448,7 @@ Forma engenhosa de construir funções de *hash*
              hn
              é o valor de *hash*.
 
+```
 SHA1, MD5, SHA usa esta construção
 
 ### Problemas Intratáveis
@@ -446,8 +463,10 @@ Se tiverem um número primo P extremamente grande ($>$ $2$^$1024$), portanto com
 
 É fácil calcular
 
+```
     X = g^x mod P
 
+```
 É intratável obter o x (pequeno) sabendo o X, g e o P.
 
 ### Problema da Fatorização de Números Primos
@@ -461,6 +480,7 @@ Se eu arranjar dois números primos grandes ($>$ $2$^$1024$), portanto com mais 
 Baseado no Problema do Logaritmo Discreto.
 Servem para trocar chaves de cifra simétricas, mas é um mecanismo da Criptografia de Chave Pública.
 
+```
     Alice                                                  Bob
      g,P ------------------------------------------------> g,P
      gera 1<x<P                                        gera 1<y<P
@@ -475,9 +495,11 @@ Servem para trocar chaves de cifra simétricas, mas é um mecanismo da Criptogra
                                g,P
                                X,Y
 
+```
 No final, a Alice e o Bob calculam K. É um número grande que parece aleatório e pode ser usado como chave de cifra ou de integridade em MACs.
 Só funciona em cenários de ataque de homem no meio **passivo**.
 
+```
     Alice                                                  Bob
     g,P
     gera 1<x<P
@@ -502,6 +524,7 @@ Só funciona em cenários de ataque de homem no meio **passivo**.
                               Y
                               K2=Y^w mod P
 
+```
 A Alice cifra as mensagens todas com K1 e envia para o Bob.
 A Claire captura e decifra todas as mensagens.
 Mais, se a Claire quiser, cifra novamente as mensagens com K2 e envia-as para o Bob.
@@ -510,6 +533,7 @@ Mais, se a Claire quiser, cifra novamente as mensagens com K2 e envia-as para o 
 
 Servem para trocar chaves de cifra simétricas, e são esquemas da criptografia de chave simétrica.
 
+```
     Alice                                                  Bob
     puzzle x = 1    k1
     puzzle y = 2    k2
@@ -529,6 +553,7 @@ Servem para trocar chaves de cifra simétricas, e são esquemas da criptografia 
                                                            Envia o indice para indicar a chave.
 
 
+```
 ## RSA 
 
 Rivest Shamir Adleman(RSA).
@@ -573,6 +598,7 @@ Como estabelecer confiança de que uma chave pública é de uma entidade.
 
 Uma entidade omnipresente era capaz de passar documentos que diziam
 
+```
     +--------------------------------+
     | "f55fd3ffd" é do Pedro         |
     |                                |
@@ -580,11 +606,13 @@ Uma entidade omnipresente era capaz de passar documentos que diziam
     |                  da123fawe23d  |
     +--------------------------------+
 
+```
 Considerem que já tinham a chave pública daquela entidade no computador.
 Cada vez que recebiam nova chave, bastava receberem também um certificado para imediatamente poderem verificar se a chave pertence ao utilizador ou não.
 
 ### Enters PKI
 
+```
     +----------------------------------+
     | O Rui tem esta chave pública: PK |
     |                                  |
@@ -593,6 +621,7 @@ Cada vez que recebiam nova chave, bastava receberem também um certificado para 
     | sad8a78s7a89d7987a8sde           |
     +----------------------------------+
 
+```
 Cada vez que alguém queria a chave do Rui, ia buscar aquele certificado, e usava a chave do Prof. para ver se o certificado era verdadeiro. Só depois é que usva a chave do Rui.
 
 A outra pessoa do outro curso conhecia outro Professor e tinha a chave dele.
