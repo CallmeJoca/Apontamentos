@@ -36,7 +36,7 @@
     - [Modelo Físico](#modelo-f%c3%adsico)
       - [Modelo por Objetos](#modelo-por-objetos)
       - [Modelo Relacional](#modelo-relacional)
-  - [Componente Serviço em Android](#componente-servi%c3%a7o-em-android)
+  - [Componente Serviço em *Android*](#componente-servi%c3%a7o-em-android)
   - [Ciclo de Vida de um Serviço](#ciclo-de-vida-de-um-servi%c3%a7o)
     - [*Started Service*](#started-service)
     - [*Bound Service*](#bound-service)
@@ -898,14 +898,26 @@ Os **Cursores** resolvem o problema de **Impedância**.
 
 O método **onUpgrade** de um objeto SQLiteOpenHelper é invocado quando a versão da base de dados muda aquando de uma nova atualização
 
-## Componente Serviço em Android
+## Componente Serviço em *Android*
+
+As aplicações *Android* correm numa máquina virtual `java`. Assim, determinada instância de execução corresponde apenas a uma processo, onde primariamente corre a *main thread*(*UI thread*). Um modelo em que é apenas usada uma única *thread* não pode responder a todos os cenários de utilização de uma aplicação móvel.
+O uso de ua só *thread* significa que qualquer conjunto de operações é executado de uma forma sequencial, pelo que a presença de uma operação lenta irá incorrer uma situação em que a aplicação deixa de responder.
+O *Android* define o tempo máximo de reação das suas aplicações para os 5 segundos. Depois disso o sistema assume controlo, mostrando a mensagem *Application not Responding*(ANR) ao utilizador.
+
+A solução passar por colocar diferentes tarefas a executar de forma assíncrona, o que se concretiza em colocá-las a correr em diferentes processos ou diferentes *threads*. A plataforma *Android* suporta o processamento em segundo plano através de **4 formas distintas**:
+1. A classe `Threads` está disponível em `java.lang.Thread` e pode ser usada para **processamento assíncrono**. É precisso ter em conta que as *thread* criadas desta forma não podem atualizar a *interface* de utilizador diretamente;
+2. A classe `Handler`(`android.os.handler`) permite definir um manípulo na *thread* principal, para o qual se podem enviar mensagens ou código para ser executado. Neste caso, declara-se a tarefa que se quer executar de forma assíncrona dentro de uma nova *thread*, e todas as operações de atualização da *interface* de utilizador são definidas dentro de uma classe `Runnable`, enviadas para serem realizadas pela *thread* principal através do método `post(Runnable)`;
+3. A classe `AsyncTask` (`android.os.AsyncTask`) pode ser usada para criar *threads* que facilmente comunicam com a *UI thread*, já que define 4 métodos que podem ser reescritos, sendo que alguns correm na *thread* em segundo plano, enquanto que outros correm na *thread* onde o objeto é criado, que normalmente corresponde à *thread* principal.
+4. Finalmente, a classe `Service`(`android.app.Service`).
+
 
 Programa / aplicação / *software* parado num disco, que não está em execução.
 
 Ao executar, o Programa / aplicações ou *software* transforma-se num ou mais processos e *threads*.
-
+```text
         Thread e processo principal
                 UIThread
+```
 
 ## Ciclo de Vida de um Serviço
 ```java
