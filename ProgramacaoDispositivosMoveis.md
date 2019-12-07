@@ -27,6 +27,9 @@
   - [Preferências Partilhadas](#prefer%c3%aancias-partilhadas)
   - [Armazenamento Interno](#armazenamento-interno)
     - [Escrita](#escrita)
+    - [*Cache*](#cache)
+    - [Leitura](#leitura)
+  - [Armazenamento Externo](#armazenamento-externo)
   - [SQLite Databases](#sqlite-databases)
     - [Modelo Conceptual](#modelo-conceptual)
       - [Entididade Relacionameto](#entididade-relacionameto)
@@ -675,7 +678,77 @@ Podem-se enunciar outros 4 métodos bastantes úteis no que toca a manipulação
 + `deleteFile(string)`, que elimina o ficheiro cujo nome é especificado no primeiro parâmetro;
 + `fileList()` que devolve um vetor de *strings* com o nome de todos os ficheiros já guardados pela aplicação.
 
+### *Cache*
 
+A memória *cache* serve para guardar dados por algum tempo.
+A maneira como funciona é que os dados são guardados em ficheiros que por si são guardados na subdiretoria `cache` da diretoria de dados da aplicação.
+O caminho para esta diretoria pode ser obtido no seio da execução através do método `getCacheDir()`.
+Quando os recursos de armazenamento começam a escassear no sistema, este começará a **eliminar ficheiros** contidos em subdiretorias `cache`.
+É por isso que não se deve presumir que estes ficheiros estarão sempre disponíveis e sobrevivam entre uma sessão e a seguinte.
+Devem ser implementados métodos na aplicação que limpem/organizem a diretoria `cache`.
+
+### Leitura
+
+A leitura do conteúdo de um ficheiro armazenado internamente é conseguida através da instanciação de um `FileInputStream`, que resulta da invocação do método `openFileInput(string)`.
+O seu único parâmetro é o nome do ficheiro. O método `read(byte[]buffer, int byteOffset, int byteCount)` pode depois ser usado para devolver `byteCount`bytes para o vetor de bytes `buffer`, ou o ficheiro pode ser lido um `byte` de cada vez recorrendo a `read()`. que devolve um `int`(representando um `byte`) e itera o cursos de leitura no ficheiro.
+Por defeito, a aplicação procura o ficheiro a abrir na diretoria `/data/data/nome_pacote_aplicacao/`.
+
+É possível incluir um ficheiro estático no projeto da aplicação.
+Neste caso, deve-se guardá-lo numa subdiretoria de `res` chamada `raw`. Este nome informa o empacotador que não deve comprimir este ficheiro.
+O método `openRawResource(int)` é o que permite abrir ficheiros deste género **para leitura**, devolvendo um objeto da classe `FileInputStream`. O único parâmetro do método é o ID do ficheiro, escrito na forma `R.raw.nome_do_ficheiro`.
+**Não é posível escrever para ficheiros guardados em** `res/raw`.
+
+## Armazenamento Externo
+
+Todos os dispositivos *Android* suportam armazenamento externo partilhado que também pode ser usado para guardar dados em ficheiros de forma persistente. O meio de armazenamento pode ser 
++ um cartão de memória externo(ex.: cartão *Secure Digital*(SD));
++ concretizado por uma parte do sistema de ficheiros num dispositivo não amovível(interno).
+
+O que melhor distingue este tipo fe armazenamento é o facto de ficar disponível como uma unidade de armazenamento USB quando o dispositivo é ligado a um computador.
+Os ficheiros guardados no armazenamento externo **têm permissões de leitura para todos**(`world-readable`), e é possível que um utilizador os possa modificar via outro dispositivo computacional compatível.
+**Não deve ser presumido que este estará sempre disponível ou presente**, num que **os ficheiros que aí são guardados se mantêm inalterados de uma execução para outra**.
+Recomenda-se que qualquer código que manuseie armazenamento externo seja guardado por uma verificação se este realmente existe ou está disponível.
+O código seguinte mostra a implementação de um método que devolve `true` caso o armazenamento externo esteja disponível **pelo menos para leitura**:
+
+```java
+    public boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if(Environment.MEDIA_MOUNTED.equals(state) || 
+           Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)){
+               return true;
+           }
+           return false;
+    }
+```
+Para uma aplicação ter acessoa ao armazenamento externo, tem que normalmente pedir essa permissão no `AndroidManifest.xml`, através da inclusão de uma das duas linhas seguintes naquele ficheiro:
+
+```xml
+    <uses-permission android:name="android permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android permission.READ_EXTERNAL_STORAGE"/>
+```
+
+O objetivo do excerto de código seguinte é copiar o conteúdo do ficheiro `fi.txt`, na pasta `res/raw` para o `ficheiro.txt`, alojado no armazenamento externo.
+A cópia só é tentada depois de ser verificado que a unidade está disponível, nomeandamente através da comparação do seu estado com a *string* `Environment.MEDIA_MOUNTED`. No caso afirmativo, é obtida a diretoria da aplicação na memória externa através de `getExternalFilesDir(null)` e aí criado o ficheiro destino. Depois disso, o objeto que representa o ficheiro é, no fundo, convertido num `OutputStream`, para onde são escritos todos os `bytes`lidos de `fi.txt`.
+
+```java
+    String state = Environment.getExternalStorageState();
+    if(Environment.MEDIA_MOUNTED.equals(state)) {
+        File fFile1 = new File(Environment.getExternalFIlesDir(null), "ficheiro.txt");
+        OutputStream fosFile = new FileOutputStream(fFile1);
+        InputStream fisFile = getResources().openRawResource(R.raw.f1);
+        byte[] baBuffer = new byte[fisFile.available()];
+        fisFile.read(baBuffer);
+        fosFile.write(baBuffer);
+        fosFile.close();
+        fosFile.close();
+    }
+```
+
+O método `Environment.getExternalStorageState()` devolve todos os estados ossíveis do armazenamento externo. Estes estados podem ser tratados com mais granulariade para definir vários fluxos para o programa ou para notificar o utilizador em conformidade.
+
+Uma determinada aplicação pode guardar ficheiros numa diretoria do armazenamento externo que lhe é dedicada, ou numa que já tenha sido criada pelo sistema.
+Caso a intenção seja guardar algo numa diretoria de topo, pública e conhecida, esta pode ser procurada especificando o seu nome no primeiro parâmetro do método `getExternalStoragePublicDirectory(string)`. Por exemplo, quando invocada com `getExternalPublicDirectory(Environment.DIRECTORY_PICTURES)`, o médoto devolve o caminho qualificado da diretoria pública que contém as imagens no armazenamento externo na forma de um ficheiro.
+No caso em que os ficheiros são guardados numa diretoria da aplicação, estes serão eliminados caso a aplicação seja desinstalada.
 ## SQLite Databases
 
 **SLQ** significa *Structured Query Language*(Linguagem Estruturada de Consultas).
