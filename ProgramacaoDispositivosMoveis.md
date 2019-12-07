@@ -24,6 +24,9 @@
   - [Segurança no Android](#seguran%c3%a7a-no-android)
     - [Permissões](#permiss%c3%b5es)
   - [Armazenamento de Dados Persistentes](#armazenamento-de-dados-persistentes)
+  - [Preferências Partilhadas](#prefer%c3%aancias-partilhadas)
+  - [Armazenamento Interno](#armazenamento-interno)
+    - [Escrita](#escrita)
   - [SQLite Databases](#sqlite-databases)
     - [Modelo Conceptual](#modelo-conceptual)
       - [Entididade Relacionameto](#entididade-relacionameto)
@@ -592,6 +595,85 @@ O SO *Android* disponibiliza diversas formas de o fazer, nomeadamente:
 4. Bases de dados ***SQLite***, para **armazenamento e acesso eficiente de dados estruturados** em bases de dados **privadas**;
 5. Formas de **acesso à rede**, para **armazenament e gestão de dados remotos**.
 
+
+
+## Preferências Partilhadas
+
+A implementação da classe `SharedPreferences` oferece o *software* necessário para guardar e recuperar dados de tipos `Java` primitivos, como `booleans`, `floats`, `ints`, `longs` ou `strings`. Estes dados são guardados em **pares chave-valor**, em que:
++ a chave é a *string* que define aquele valor.
+
+A instanciação de um objeto da classe `SharedPreferences` é feita através da invocação do método:
++ `getSharedPreferences(string, int)`:
+  + caso se pretenda dar um nome ao ficheiro de preferências;
+  + caso se pretenda obter o ficheiro previamente guardado com esse nome.
++ `getPreferences(int)`:
+  + caso só se esteja a usar o ficheiro por defeito;
+  + aceita apenas o `int` que define o modo de acesso ao ficheiro.
+
+Ambos os métodos são fornecidos com o contexto da componente em utilização.
+
+As **Preferências Partilhas** são ficheiros `XML`, guardados normalmente na diretoria de dados da aplicação, nomeadamente na diretoria:
++ `/data/data/nome_pacote_aplicacao/shared_prefs/nome_dado_ao_ficheiro.xml`, caso se tenha dado um nome ao ficheiro;
++ `/data/data/nome_pacote_aplicacao/shared_prefs/nome_pacote_aplicacao.xml`, caso se use o ficheiro por defeito.
+
+O pedaço de código a seguinte exemplifica a utilização das preferências partilhadas.
+
+```java
+    public class SimpleNotes extends Activity {
+        @Override
+        protected void onCreate(Bundle state) {
+            super.onCreate(state);
+            ...
+            // Get the previously stored preferences
+            SharedPreferences oSP = getPreferences();
+            boolean bRecupera = oSP.getBoolean("recupera", false);
+            if(bRecupera)
+            ...
+        }
+        public void exit(View v) {
+            //Instantiate the Editor object
+            SharedPreferences oSP = getPreferences();
+            SharedPreferences.Editor oEditor = oSP.edit();
+            oEditor.putBoolean("recupera", true);
+
+            // Make the edit persistent
+            oEditor.commit();
+            ...
+            super.finish();
+        }
+    }
+```
+
+## Armazenamento Interno
+### Escrita
+
+Para guardar ficheiros na memória interna, nomeadamente na diretoria `/data/data/nome_pacote_aplicacao/`, pode usar-se o método `openFileOutput(String, int)`, que:
++ aceita como parâmetros:
+  +  o nome do ficheiro;
+  +   o modo de acesso com que o ficheiro deve ser guardado ou aberto.
++ devolve um objeto da classe `FileOutputStream`.
+
+Os ficheiros criados ou editados conforme descrito nesta seção são eliminados automaticamente pelo sistema aquando da desinstalação da aplicação.
+
+Existem 4 modos de operação que interessa conhecer:
++ `MODE_PRIVATE`(valor 0), que é o modo sugerido por defeito, que define que apenas a aplicação que criou o ficheiro ou todas aquelas que com ela partilhem o ID lhe podem aceder;
++ `MODE_wORLD_READABLE`(valor 1), que define que o ficheiro pode ser acedido para leitura por qualquer aplicação;
++ `MODE_WORLD_WRITABLE`(valor 2), que especifica que qualquer aplicação pode aceder ao ficheiro para escrita;
++ `MODE_APPEND`(valor 32768), que determina que a escrita de dados novos no ficheiro deve ser feita no final, caso este já exista.
+
+A escrita de dados no ficheiro pela aplicação que o criou é possível em qualquer um dos modos indicados antes.
+O código seguinte mostra como se pode escrever a *string* `Ola mundo!` num ficheiro chamado `ficheiro.txt` numa aplicação *Android*.
+```java
+    FileOutputStream fosFile = openFileOutput("ficheiro.txt", Context.MODE_PRIVATE);
+    fosFile.write("Ola Mundo!", getBytes());
+    fosFile.close();
+```
+
+Podem-se enunciar outros 4 métodos bastantes úteis no que toca a manipulação de ficheiros:
++ `getFilesDir()`, que devolve o caminho absoluto da diretoria onde os ficheiros são guardados;
++ `getDir(string, int)`, que cria a diretoria com o nome definido no primeiro parâmetro, com as permissões de acesso definidas no segundo;
++ `deleteFile(string)`, que elimina o ficheiro cujo nome é especificado no primeiro parâmetro;
++ `fileList()` que devolve um vetor de *strings* com o nome de todos os ficheiros já guardados pela aplicação.
 
 
 ## SQLite Databases
