@@ -37,9 +37,10 @@
       - [Modelo por Objetos](#modelo-por-objetos)
       - [Modelo Relacional](#modelo-relacional)
   - [Componente Serviço em *Android*](#componente-servi%c3%a7o-em-android)
+    - [Definiçaõ de Serviço](#defini%c3%a7a%c3%b5-de-servi%c3%a7o)
   - [Ciclo de Vida de um Serviço](#ciclo-de-vida-de-um-servi%c3%a7o)
-    - [*Started Service*](#started-service)
-    - [*Bound Service*](#bound-service)
+      - [*Started Service*](#started-service)
+      - [*Bound Service*](#bound-service)
   - [`Intent Service`](#intent-service)
   - [Notificações na Barra de Estado](#notifica%c3%a7%c3%b5es-na-barra-de-estado)
   - [Recetores de Difusão](#recetores-de-difus%c3%a3o)
@@ -910,14 +911,25 @@ A solução passar por colocar diferentes tarefas a executar de forma assíncron
 3. A classe `AsyncTask` (`android.os.AsyncTask`) pode ser usada para criar *threads* que facilmente comunicam com a *UI thread*, já que define 4 métodos que podem ser reescritos, sendo que alguns correm na *thread* em segundo plano, enquanto que outros correm na *thread* onde o objeto é criado, que normalmente corresponde à *thread* principal.
 4. Finalmente, a classe `Service`(`android.app.Service`).
 
+### Definiçaõ de Serviço
 
-Programa / aplicação / *software* parado num disco, que não está em execução.
+Um `Service`não é mais do que uma forma de anunciar o desejo de uma aplicação *Android* executar uma operação, ou então definir uma forma de fornecer funcionalidades a outras aplicações, que se podem vincular ao serviço para obter essas funcionalidades.
 
-Ao executar, o Programa / aplicações ou *software* transforma-se num ou mais processos e *threads*.
-```text
-        Thread e processo principal
-                UIThread
-```
++ Um serviço **não é um processo separado**;
++ Um serviço **não é, nem cria, uma *thread**.
+
+A não ser que seja estritamente definido em contrário, um serviço corre no mesmo processo da aplicação.
+Caso se queira fazer trabalho demorado dentro de um serviço, o programador deve declarar explicitamente uma nova *thread*.
+
+Um `Service` pode ser distinguido de uma `Activity` pelo facto de que o `Service`não tem uma *interface* de utilizador.
+
+Existem dois tipos de serviços:
+1.`Started Service`, que são colocados em execução por outro componente através do método `startService()`. Uma vez iniciados, os serviços sem vínculo podem correr indefinidamente em segundo plano, mesmo que o componente que os colocou em execução seja destruído. Os serviços deste tipo fazem apenas uma operação e não devolvem resultados para a componente que os invocou. Depois de cumprirem o seu destino, o serviço deve auto terminar-se;
+2. `Bounded Service`, que são colocados em execução ou criado o vínculo através do método `bindService()`. Este tipo de serviço providencia formas definir uma *interface* que permite que outros componentes da mesma aplicação, ou de aplicações diferentes, interajam com o serviço numa arquitetura cliente-servidor, enviando-lje pedidos e obtendo resultados. É possível que várias componentes se liguem simultaneamente a um serviço e este só sobrevive enquanto tiver componentes vinculadas.
+
+Um mesmo Serviço pode funcionar em modo `started` ou `bounded`, dependendo de como é invocado e dos métodos da sua superclasse que são implementados.
+
+
 
 ## Ciclo de Vida de um Serviço
 ```java
@@ -1005,15 +1017,15 @@ Para ser um serviço com vínculo, tem
 
 ```
 Para implementar um serviço deve ser extendida a classe `Service`.
-### *Started Service*
+
+#### *Started Service*
 
 São serviçoes que são começados para fazer qualquer 
 
 Para ser um serviço sem vínculo, tem de implementar o `onStartCommand`.
 
 
-
-### *Bound Service*
+#### *Bound Service*
 
 São serviços a que outros blocos das aplicações se podem ligar e desligar.
 
