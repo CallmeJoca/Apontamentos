@@ -90,6 +90,8 @@ Unix
 **Q29.: O que é que isso significa? Consegue dizer exatamente o tema ou o *path* do ícone no disco?**
 + Sim, consigo: --
 
+---
+
 ## Ficha 2
 
 **Q1.: Para efeitos de registo, em que pasta fica o projeto criado pelo comando anterior?**
@@ -170,6 +172,8 @@ Unix
 **Q24.: Qual o resultado deste comando?**
 + É exibido um *log* do sistema virtualizado que se está a usar para testar a aplicação.
 
+---
+
 ## Ficha 3
 
 **Q1.: Qual das seguintes combinações lista todos os AVDs disponíveis como o comando `$ emulator`?**
@@ -221,3 +225,63 @@ Unix
 
 **Q14.: Já agora, só por curiosidade, o que significa URL?**
 + Uniform Resource Locator
+
+---
+
+## Ficha 4
+
+**Q1.: Só para relembrar: qual é o pacote que deve importar para usar objetos interativos como o botão?**
++ `android.widget.*`
+
+**Q2.: Por curiosidade, qual é a classe pai(ou super classe) da classe `Button`?**
++ `android.widget.Button`
+
+**Q3.: Já agora como se chama o cunhado do `Button`**
++ --
+
+**Q4.: A *interface* de utilizador que desenhou em cima é semelhante à que realmente apareceu?**
++ --
+
+**Q5.: Experimentou os botões?**
++ Experimentei, e não faziam nada(como não podia deixar de ser).
+
+**Q6.: Onde está implementada esta classe? Por outras palavras, onde está o ficheiro `R.java`?**
++ Em `build/generated/source/buildConfig`
+
+**Q7.: A que conceito se refere a instrução `R.id`?**
++ A um atributo estático.
+
+**Q8.: Em que situação é conveniente editar este ficheiro?**
++ Sempre que se quer adicionar um identificador novo a um *widget*.
+
+**Q9.: Afinal, o que são os IDs que utiliza no código para referenciar alguns recursos de uma aplicação Android?**
++ São *Strings*.
+
+**Q10.: De uma maneira geral, esta abordagem parece-lhe mais simples que as que já foram estudadas até aqui?**
++ De facto, parece-me mais simples(legível).
+
+**Q11.: Este parâmetro é mesmo necessário?**
++ É sim. Sem ele, o *callback* não funciona.
+
+**Q12.: Por curiosidade, em que versão da *Application Programming Interface*(API) Android é que os botões foram disponibilizados?**
++ Na API 1.
+
+**Q13.: Como se chama a classe que lhe permite fazer isso?**
++ `Log`
+
+**Q14.: Qual o pacote que terá de importar para poder usar a classe mencionada antes?**
++ `android.app.Activity`
+
+**Q15.: Como é que se aplicam filtros no `logcat` via linha de comandos?**
++ Combinando a opção `-f` com `ALC`
+
+**Q16.: Consegue simular um fluxo normal(completo) de execução da aplicação no seu `logcat`?**
++ Claro que consigo.
+
+**Q17.: Consegue simular o fluxo definido a seguir no seu `logcat`?**
++ --
+
+**Q18.: Por curiosidade, o que é que acontece quando muda a oirentação(e.g., de vertical (*portrait*) para horizontal (*landscape*)) do dispositivo, em termos do ciclo de vida de uma atividade?**
++ O facto é que, em termos de ciclo de vida, a atividade parece não ter sufrido qualquer alteração no processo.
+
+---
