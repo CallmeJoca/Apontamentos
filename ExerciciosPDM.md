@@ -169,3 +169,55 @@ Unix
 
 **Q24.: Qual o resultado deste comando?**
 + É exibido um *log* do sistema virtualizado que se está a usar para testar a aplicação.
+
+## Ficha 3
+
+**Q1.: Qual das seguintes combinações lista todos os AVDs disponíveis como o comando `$ emulator`?**
++ `$ emulator -list-avds`
+
+**Q2.: Consegue aperceber-se da diferença entre uma *interface* de utilizador e uma *interface* entre duas componentes de um programa?**
++ Agora que penso nisso... sim, consigo.
+
+**Q3.: Em que local pode o ficheiro mencionado ser encontrado?**
++ `src/main/res/layout`
+
+**Q4.: Funcionou?**
++ --
+
+**Q5.: Qual das seguintes deverá usar?**
++ `app:layout_constraintBottom_toBottomOf`
++ `app:layout_constraintLeft_toLeftOf`
++ `app:layout_constraintRight_toRightOf`
++ `app:layout_constraintTop_toBottomOf`
+
+**Q6.: Não pergunta ao Prof. pelo significado do `@` e do `+` na definição da propriedade `android:id`?**
++ Não, porque já sei tudo.
++ `@`: declaração da atual localização no ficheiro
++ `+`: junção da autal localização com o elemento id
+
+**Q7.: Estes factos vão de encontro ao que foi referido em relação à arquitetura de software MVC?**
++ ? 
+
+**Q8.: Já se ssabe que estará dentro da diretoria `src`, mas qual o caminho completo do ficheiro a partir da raiz da aplicação?**
++ `app/src/main/java/pmd/di/ubi/pt/acalculator/...`
+
+**Q9.: Consegue encontrar a linha de código que *carrega o layout* da aplicação a partir do ficheiro?**
++ Sim, é a linha com a instrução:
+```java
+    setContentView(R.layout.activity_main);
+```
+
+**Q10.: Por que é que cada vez que declara a função `findViewById(...)` necessita de colocar o nome de uma classe de uma objeto entre parêntesis antes?**
++ O propótipo da função mencionada obriga a que seja chamada desta forma.
+
+**Q11.: Agora sem olhar(!), consegue encontrar este ficheiro?**
++ Sim, em ...
+
+**Q12.: Qual o efeito desta alteração na interface de utilizador da aplicação?**
++ O botão passa a ocupar o máximo do ecrã na horizontal.
+
+**Q13.: Que nome se dá à classe criada pela instrução `new View.onClickListener()`?**
++ Classe anónima.
+
+**Q14.: Já agora, só por curiosidade, o que significa URL?**
++ Uniform Resource Locator
