@@ -37,7 +37,7 @@
       - [Modelo por Objetos](#modelo-por-objetos)
       - [Modelo Relacional](#modelo-relacional)
   - [Componente Serviço em *Android*](#componente-servi%c3%a7o-em-android)
-    - [Definiçaõ de Serviço](#defini%c3%a7a%c3%b5-de-servi%c3%a7o)
+    - [Definição de Serviço](#defini%c3%a7%c3%a3o-de-servi%c3%a7o)
   - [Ciclo de Vida de um Serviço](#ciclo-de-vida-de-um-servi%c3%a7o)
       - [*Started Service*](#started-service)
       - [*Bound Service*](#bound-service)
@@ -911,7 +911,7 @@ A solução passar por colocar diferentes tarefas a executar de forma assíncron
 3. A classe `AsyncTask` (`android.os.AsyncTask`) pode ser usada para criar *threads* que facilmente comunicam com a *UI thread*, já que define 4 métodos que podem ser reescritos, sendo que alguns correm na *thread* em segundo plano, enquanto que outros correm na *thread* onde o objeto é criado, que normalmente corresponde à *thread* principal.
 4. Finalmente, a classe `Service`(`android.app.Service`).
 
-### Definiçaõ de Serviço
+### Definição de Serviço
 
 Um `Service`não é mais do que uma forma de anunciar o desejo de uma aplicação *Android* executar uma operação, ou então definir uma forma de fornecer funcionalidades a outras aplicações, que se podem vincular ao serviço para obter essas funcionalidades.
 
