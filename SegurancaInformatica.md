@@ -18,22 +18,22 @@
   - [Ataques com Texto Limpo Original Escolhido Adaptativamente](#ataques-com-texto-limpo-original-escolhido-adaptativamente)
 - [Ciptografia de Chave Simétrica](#ciptografia-de-chave-sim%c3%a9trica)
   - [Conceitos de Difusão e Confusão](#conceitos-de-difus%c3%a3o-e-confus%c3%a3o)
-  - [*One Time Pad*](#one-time-pad)
+  - [One Time Pad](#one-time-pad)
   - [Outras Contribuições Interessantes neste Contexto](#outras-contribui%c3%a7%c3%b5es-interessantes-neste-contexto)
   - [Definição de Cifra de Chave Simétrica](#defini%c3%a7%c3%a3o-de-cifra-de-chave-sim%c3%a9trica)
   - [Cifra de Chave Simétrica Contínua](#cifra-de-chave-sim%c3%a9trica-cont%c3%adnua)
-  - [Cifra de Chave Simétrica **por Blocos**](#cifra-de-chave-sim%c3%a9trica-por-blocos)
+  - [Cifra de Chave Simétrica por Blocos](#cifra-de-chave-sim%c3%a9trica-por-blocos)
     - [História](#hist%c3%b3ria)
     - [Aspetos Gerais](#aspetos-gerais)
-    - [*Electronic Code Book*](#electronic-code-book)
-    - [*Cipher Block Chaining*](#cipher-block-chaining)
-    - [*Counter Mode*](#counter-mode)
-  - [Funções de *Hash* Criptográficas](#fun%c3%a7%c3%b5es-de-hash-criptogr%c3%a1ficas)
+    - [Electronic Code Book](#electronic-code-book)
+    - [Cipher Block Chaining](#cipher-block-chaining)
+    - [Counter Mode](#counter-mode)
+  - [Funções de Hash Criptográficas](#fun%c3%a7%c3%b5es-de-hash-criptogr%c3%a1ficas)
     - [Integridade](#integridade)
-      - [Propriadades de Funções de *Hash* sem serem Criptográficas](#propriadades-de-fun%c3%a7%c3%b5es-de-hash-sem-serem-criptogr%c3%a1ficas)
-      - [Propriadades de Funções de *Hash* Criptográficas](#propriadades-de-fun%c3%a7%c3%b5es-de-hash-criptogr%c3%a1ficas)
+      - [Propriadades de Funções de Hash sem serem Criptográficas](#propriadades-de-fun%c3%a7%c3%b5es-de-hash-sem-serem-criptogr%c3%a1ficas)
+      - [Propriadades de Funções de Hash Criptográficas](#propriadades-de-fun%c3%a7%c3%b5es-de-hash-criptogr%c3%a1ficas)
       - [Exemplos Canónicos](#exemplos-can%c3%b3nicos)
-      - [Utilidades das Funções de *Hash*](#utilidades-das-fun%c3%a7%c3%b5es-de-hash)
+      - [Utilidades das Funções de Hash](#utilidades-das-fun%c3%a7%c3%b5es-de-hash)
     - [Códigos de Autenticação de Mensagens](#c%c3%b3digos-de-autentica%c3%a7%c3%a3o-de-mensagens)
       - [Construções dos MACs](#constru%c3%a7%c3%b5es-dos-macs)
       - [MAC + Cifra, como Combinar](#mac--cifra-como-combinar)
@@ -41,7 +41,7 @@
   - [Esquemas de Distribuição de Chaves](#esquemas-de-distribui%c3%a7%c3%a3o-de-chaves)
   - [Criptografia de Chave Pública](#criptografia-de-chave-p%c3%bablica)
     - [Definição de Chave Pública](#defini%c3%a7%c3%a3o-de-chave-p%c3%bablica)
-    - [Contrução *Merkle-Damgard*](#contru%c3%a7%c3%a3o-merkle-damgard)
+    - [Contrução Merkle-Damgard](#contru%c3%a7%c3%a3o-merkle-damgard)
     - [Problemas Intratáveis](#problemas-intrat%c3%a1veis)
       - [Problema do Logaritmo Discreto](#problema-do-logaritmo-discreto)
     - [Problema da Fatorização de Números Primos](#problema-da-fatoriza%c3%a7%c3%a3o-de-n%c3%bameros-primos)
@@ -57,11 +57,102 @@
       - [O Certificado X.509](#o-certificado-x509)
     - [PKI](#pki)
       - [Protocolos da PKI](#protocolos-da-pki)
-    - [*Pretty Good Privacy*(PGP)](#pretty-good-privacypgp)
+    - [Pretty Good Privacy(PGP)](#pretty-good-privacypgp)
       - [Confiança em PGP](#confian%c3%a7a-em-pgp)
     - [Cartão de Cidadão da República Portuguesa](#cart%c3%a3o-de-cidad%c3%a3o-da-rep%c3%bablica-portuguesa)
-  - [+ O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).](#o-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezes)
-  - [+ O PUK da assinatura dígital tem 4 dígitos.](#o-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitos)
+  - [<ul>
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+  - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
+    - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+  - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
+    - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
 
 ## Criptografia
 
@@ -773,3 +864,47 @@ Se se perder as chaves ou desconfiar que alguém as roubou:
 + A ativação do *smartcard* tem 8 dígitos;
 + Ativação de assinatura digital tem 4 dígitos;
 + O PIN de cancelamento do cartão tem 8 dígitos.
+
+## Segurança da Informação
+
+### Uma definição de Segurança da Informação
+
+> Segundo esse conjunto de referencias, a expressão **Segurança da Informação**, por vezes abreviado por SegInfo, é sinónimo de **proteção da informação e dos sistemas de informação das ameaças às três propriedades fundamentais CIA** - *Confidentiality, Integrity and Availability*.
+
+Do processo da Segurança da Informação fazem parte diversos componentes, nomeadamente **a identificação das ameaças, dos recursos críticos e das vulnerabilidades, a quatificação do risco e a concretização dos objetivos de segurança para determinada organização ou intidade**...
+
+
+### Quantificação do Risco
+
+É possível definir uma fórmula simples para o cálculo do risco($R$) associado a determinada vulnerabilidade num sistema informático, que pode ajudar nessa comparação:
+$R = P * V$, 
+em que $V$ define o valor do sistema ou informação a proteger, ou o valor implicado num incidente de segurança...
+
+A fórmula é de difícil aplicação, porque implica:
+1. **Identificação e caracterização de vulnerabilidades**, bem como dos **ataques** a que está afeta;
+2. **Dedução da probabilidade** de um ataque que explore as vulnerabilidades identificadas.
+
+Como discutido em baixo, **a identificação e caraterização de vulnerabilidades é**, por isso, **importante para atacantes e profissionais da segurança da informação**.
+
+## Detetores de Vulnerabilidades
+
+Como se pode obter alguma informação acerca da máquina que serve o *site* da *Microsoft*: `$ telnet www.microsoft.com 80`
+
+```bash
+  GET /index.php HTTP/1.1
+  host: www.microsoft.com
+  <cr>
+```
+
+```bash
+
+```
+
+### Impressão Digital da Pilha IP
+
+Uma das melhores maneiras de fazer a identificação é através da técnica a que se chama de impressão digital da pilha ***Transmission Control Protocol/Internet Protocol***(TCP/IP). A verdade é que :
+1. **Todos os sistemas** com ligação à *Internet* possuem esta pilha;
+2. **A especificação** dos protocolos da suite TCP/IP **deixa espaço para alguma personalização**, que pode variar de SO para SO;
+3. O **comportamento padrão permite expansões**, que são fontes de diferenças.
+
+**Desvios ao comportamento padrão** da pilha são **indicadores do SO utilizado e da respetiva versão**. A **reação a situações absurdas não é** normalmente **coberta pela especificação** do protocolo, logo **é resultado de decisões dos programadores** de SO.
