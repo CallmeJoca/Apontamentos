@@ -171,7 +171,7 @@ A plataforma *Android* é composta por:
         + máquina virtual *Dalvik*.
       + disponibliza um conjunto de classes `Java`.
     + *Framework* aplicacional:
-      + contém *software ou recursos que as aplicações *Android* podem necessitar e reutilizar;
+      + contém *software* ou recursos que as aplicações *Android* podem necessitar e reutilizar;
       + alguns destes componentes são:
         + gestor de pacotes;
         + gestor de janelas;
