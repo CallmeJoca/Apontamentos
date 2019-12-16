@@ -71,6 +71,64 @@
     - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
   - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
     - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
+  - [Aula Extra Prática](#aula-extra-pr%c3%a1tica)
+    - [Arquiterura de uma Aplicação Web](#arquiterura-de-uma-aplica%c3%a7%c3%a3o-web)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+  - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
+    - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
+  - [Aula Extra Prática](#aula-extra-pr%c3%a1tica)
+    - [Arquiterura de uma Aplicação Web](#arquiterura-de-uma-aplica%c3%a7%c3%a3o-web)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+  - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
+    - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
+  - [Aula Extra Prática](#aula-extra-pr%c3%a1tica)
+    - [Arquiterura de uma Aplicação Web](#arquiterura-de-uma-aplica%c3%a7%c3%a3o-web)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+  - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
+    - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
+  - [Aula Extra Prática](#aula-extra-pr%c3%a1tica)
+    - [Arquiterura de uma Aplicação Web](#arquiterura-de-uma-aplica%c3%a7%c3%a3o-web)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+  - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
+    - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
+<li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
+</ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
+  - [<ul>
+<li>O PUK da assinatura dígital tem 4 dígitos.</li>
+</ul>](#ul-lio-puk-da-assinatura-d%c3%adgital-tem-4-d%c3%adgitosli-ul)
+  - [Segurança da Informação](#seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Uma definição de Segurança da Informação](#uma-defini%c3%a7%c3%a3o-de-seguran%c3%a7a-da-informa%c3%a7%c3%a3o)
+    - [Quantificação do Risco](#quantifica%c3%a7%c3%a3o-do-risco)
+  - [Detetores de Vulnerabilidades](#detetores-de-vulnerabilidades)
+    - [Impressão Digital da Pilha IP](#impress%c3%a3o-digital-da-pilha-ip)
 <li>O PIN de assinatura digital tem 4 dígitos (introduzido até 3 vezes).</li>
 </ul>](#ul-lio-pin-de-assinatura-digital-tem-4-d%c3%adgitos-introduzido-at%c3%a9-3-vezesli-ul)
   - [<ul>
@@ -908,3 +966,59 @@ Uma das melhores maneiras de fazer a identificação é através da técnica a q
 3. O **comportamento padrão permite expansões**, que são fontes de diferenças.
 
 **Desvios ao comportamento padrão** da pilha são **indicadores do SO utilizado e da respetiva versão**. A **reação a situações absurdas não é** normalmente **coberta pela especificação** do protocolo, logo **é resultado de decisões dos programadores** de SO.
+
+## Aula Extra Prática
+
+### Arquiterura de uma Aplicação Web
+
+```
+  Cliente
+  Computador Desktop                 10.0.2.1
+  +---------------+                 +---------------------------------+
+  | +------+      | HTTP/TLS/TCP/IP |   Sistema Operativo (server)    |
+  | | URL  | <--> |<--------------->|443   +--------+                 |
+  | +------+      | HTTPS/TCP/IP    |      |servidor|<-> Sistema      |
+  | |      |  SO  |                 |      |páginas |   Ficheiros     |
+  | +------+      |                 |      +--------+   index.html    |
+  +---------------+                 |          ^              ^       |
+                                    |          |              |       |
+                                    |          v              v       |
+                                    |      +--------+       +-------+ |
+                                    |      |  PHP   |  <->  |  SGBD | |
+                                    |      +--------+       +-------+ |
+                                    +---------------------------------+
+
+```
+
++ URL = 10.0.2.1:443
++ URL = https://10.0.2.1
+
+
+**Q1.: O que significa as várias letras do acrónimo AMPP?**
++ *Apache HTTP Server*
++ *MySQL*
++ *PHP*
++ ...
+
+---
+
++ WAMPP para Windows
++ LAMPP para Linux
++ MAMPP para Mac
++ XAMPP *cross*
+
+
+**Q2.: Qual o nome da iniciativa que permite a criação de certificados digitais de forma gratuita?**
++ *Let's encrypt*
+
+**Q3.:Quais são os maiores patrocinadores dessa iniciativa?**
++ *Mozilla*
++ *Google*
++ *Cisco*
++ *Facebook*
++ *Internet Society*
++ *Akamai*
++ *HP*
+
+**Q4.: Consegue reconhecer o melhor comando para conseguir copiar o ficheiro `register.php` para `insert.php`?**
++ `$  register.php insert.php` 
