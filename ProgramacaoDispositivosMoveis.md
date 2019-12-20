@@ -1,33 +1,33 @@
 # Programação de Dispositivos Móveis
 
 - [Programação de Dispositivos Móveis](#programa%c3%a7%c3%a3o-de-dispositivos-m%c3%b3veis)
-  - [Deselvolvimento de *Interfaces* de Utilizador Orientadas por Eventos(para Dispositivos Móveis)](#deselvolvimento-de-interfaces-de-utilizador-orientadas-por-eventospara-dispositivos-m%c3%b3veis)
+  - [Deselvolvimento de Interfaces de Utilizador Orientadas por Eventos(para Dispositivos Móveis)](#deselvolvimento-de-interfaces-de-utilizador-orientadas-por-eventospara-dispositivos-m%c3%b3veis)
     - [Programas Sequencias](#programas-sequencias)
   - [Padrão Modelo-Visão-Controlador](#padr%c3%a3o-modelo-vis%c3%a3o-controlador)
-  - [Sistema Operativo *Android*](#sistema-operativo-android)
-  - [Aplicações *Android*](#aplica%c3%a7%c3%b5es-android)
-    - [Processo de preparação de uma aplicação *Android*](#processo-de-prepara%c3%a7%c3%a3o-de-uma-aplica%c3%a7%c3%a3o-android)
+  - [Sistema Operativo Android](#sistema-operativo-android)
+  - [Aplicações Android](#aplica%c3%a7%c3%b5es-android)
+    - [Processo de preparação de uma aplicação Android](#processo-de-prepara%c3%a7%c3%a3o-de-uma-aplica%c3%a7%c3%a3o-android)
   - [Métodos](#m%c3%a9todos)
-    - [`onCreate()`](#oncreate)
-    - [`onStart()`](#onstart)
-    - [`onResume()`](#onresume)
-    - [`onPause()`](#onpause)
-    - [`onStop()`](#onstop)
-    - [`onRestart()`](#onrestart)
-    - [`onDestroy()`](#ondestroy)
+    - [onCreate()](#oncreate)
+    - [onStart()](#onstart)
+    - [onResume()](#onresume)
+    - [onPause()](#onpause)
+    - [onStop()](#onstop)
+    - [onRestart()](#onrestart)
+    - [onDestroy()](#ondestroy)
   - [Intentos](#intentos)
     - [Instanciação de Intentos](#instancia%c3%a7%c3%a3o-de-intentos)
     - [Intentos Explícitos](#intentos-expl%c3%adcitos)
     - [Intentos Implícitos](#intentos-impl%c3%adcitos)
     - [Envio de Dados Via Intento](#envio-de-dados-via-intento)
-  - [*Toasts*](#toasts)
+  - [Toasts](#toasts)
   - [Segurança no Android](#seguran%c3%a7a-no-android)
     - [Permissões](#permiss%c3%b5es)
   - [Armazenamento de Dados Persistentes](#armazenamento-de-dados-persistentes)
   - [Preferências Partilhadas](#prefer%c3%aancias-partilhadas)
   - [Armazenamento Interno](#armazenamento-interno)
     - [Escrita](#escrita)
-    - [*Cache*](#cache)
+    - [Cache](#cache)
     - [Leitura](#leitura)
   - [Armazenamento Externo](#armazenamento-externo)
   - [SQLite Databases](#sqlite-databases)
@@ -36,14 +36,15 @@
     - [Modelo Físico](#modelo-f%c3%adsico)
       - [Modelo por Objetos](#modelo-por-objetos)
       - [Modelo Relacional](#modelo-relacional)
-  - [Componente Serviço em *Android*](#componente-servi%c3%a7o-em-android)
+  - [Componente Serviço em Android](#componente-servi%c3%a7o-em-android)
     - [Definição de Serviço](#defini%c3%a7%c3%a3o-de-servi%c3%a7o)
   - [Ciclo de Vida de um Serviço](#ciclo-de-vida-de-um-servi%c3%a7o)
-      - [*Started Service*](#started-service)
-      - [*Bound Service*](#bound-service)
-  - [`Intent Service`](#intent-service)
+      - [Started Service](#started-service)
+      - [Bound Service](#bound-service)
+  - [Intent Service](#intent-service)
   - [Notificações na Barra de Estado](#notifica%c3%a7%c3%b5es-na-barra-de-estado)
   - [Recetores de Difusão](#recetores-de-difus%c3%a3o)
+  - [ContentProviders](#contentproviders)
 
 ## Deselvolvimento de *Interfaces* de Utilizador Orientadas por Eventos(para Dispositivos Móveis)
 
@@ -1166,4 +1167,75 @@ Declarar atividade dentro do `AndroidManifest.xml` :
             ...
             </receiver>
         </application>
+```
+
+## ContentProviders
+
+```
+       Processo 1                           Processo 2
+
+       Aplicação 1                          Aplicação 2
+      FavoriteMovies                      MoviesAndMusique
+      (base de dados)                      (base de dados)
+            |
+            +-------------------------->
+                 
+```
+
++ Aplicação 2 vai querer importar dados da Aplicação 1;
++ Aplicação 1 quer disponibilizar, de forma uniforme, os dados que guarda, para outras aplicações.
+
+O ideal é fazer uma API (uma forma uniforme de outros processos acederem ao recurso).
+
+```java
+    //ContentProvider
+
+    public class MyContentProvider extends ContentProvider {
+        
+        @Override
+
+        //query
+
+        //insert
+
+        //delete
+
+        //update
+    }
+```
+
+```java
+    // ContentProvider Client
+
+    ContentResolver oCR = getContentResolver();
+    oCR.query(...);
+```
+
+```xml
+    <!--AndroidManifest.XML-->
+    
+    <application>
+        <activity>
+        </activity>
+
+        <activity>
+        </activity>
+        
+        <activity>
+        </activity>
+
+        <activity>
+        </activity>
+
+        <activity>
+        </activity>
+
+        <receiver>
+        </receiver>
+
+        <service>
+        </service>
+
+        ...
+    </application>
 ```
